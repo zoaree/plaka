@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Rümoski - Plaka Oyunu</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div id="app">
+    <header class="app-header">
+      <h1 class="logo">🚗 Rümoski</h1>
+      <div class="header-actions">
+        <button id="btnLeaderboard" class="btn ghost">Sıralama</button>
+        <button id="btnTheme" class="btn ghost" title="Tema Değiştir">🌙</button>
+      </div>
+    </header>
+
+    <main>
+      <!-- Karşılama Ekranı -->
+      <section id="screen-welcome" class="screen active">
+        <div class="card intro">
+          <h2>Hoş geldin! Adını yaz ve oyuna başla.</h2>
+          <div class="form-row">
+            <label for="playerName">İsmin</label>
+            <input id="playerName" type="text" placeholder="Örn: Ayşe" maxlength="20" />
+          </div>
+          <button id="btnStart" class="btn primary big">Başla 🚀</button>
+        </div>
+        <div class="plate-demo bounce-in">
+          <div class="plate"><span class="tr">TR</span><span class="code">??</span><span class="name">Hangi Şehir?</span></div>
+        </div>
+      </section>
+
+      <!-- Oyun Ekranı -->
+      <section id="screen-game" class="screen">
+        <div class="hud">
+          <div class="hud-item"><span class="tag">Oyuncu</span><span id="hudName">-</span></div>
+          <div class="hud-item"><span class="tag">Zorluk</span><span id="hudDiff">-</span></div>
+          <div class="hud-item"><span class="tag">Skor</span><span id="hudScore">0</span></div>
+          <div class="hud-item"><span class="tag">Süre</span><span id="hudTime">60</span></div>
+          <div class="progress"><div id="timeBar" class="bar"></div></div>
+        </div>
+
+        <div class="game-area">
+          <div id="questionWrap" class="question-wrap">
+            <div id="plate" class="plate big">
+              <span class="tr">TR</span>
+              <span id="plateCode" class="code">--</span>
+              <span id="plateName" class="name hidden">----</span>
+            </div>
+            <div id="questionText" class="question-text">Soru</div>
+          </div>
+
+          <div id="answers" class="answers">
+            <!-- Çoktan seçmeli cevaplar buraya gelecek -->
+          </div>
+
+          <div id="matchArea" class="match-area hidden">
+            <div class="match-col" id="matchLeft"></div>
+            <div class="match-col" id="matchRight"></div>
+          </div>
+
+          <div id="inputWrap" class="input-wrap hidden">
+            <input id="answerInput" type="text" placeholder="Cevabını yaz..." list="provinceList" autocomplete="off" />
+            <datalist id="provinceList"></datalist>
+            <button id="btnSubmit" class="btn primary">Gönder</button>
+          </div>
+
+          <div class="controls">
+            <button id="btnSkip" class="btn ghost">Pas Geç ⏭️</button>
+            <button id="btnPause" class="btn ghost">Durdur ⏸️</button>
+          </div>
+        </div>
+      </section>
+
+      <!-- Özet Ekranı -->
+      <section id="screen-summary" class="screen">
+        <div class="card summary">
+          <h2>Oyun Bitti 🎉</h2>
+          <p><strong id="sumName"></strong>, skorun: <strong id="sumScore">0</strong></p>
+          <div id="sumDetails" class="sum-details"></div>
+          <div class="summary-actions">
+            <button id="btnPlayAgain" class="btn primary">Tekrar Oyna</button>
+            <button id="btnShowLeaderboard" class="btn">Sıralamayı Gör</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="app-footer">
+      <span>Made with Rümo ❤️</span>
+    </footer>
+  </div>
+
+  <!-- Sıralama Modal -->
+  <div id="leaderboard" class="modal hidden">
+    <div class="modal-content">
+      <div class="modal-head">
+        <h3>Skor Tablosu</h3>
+        <button id="lbClose" class="btn ghost">Kapat ✖</button>
+      </div>
+      <div id="lbList" class="lb-list"></div>
+      <div class="modal-foot">
+        <button id="lbClear" class="btn danger">Temizle</button>
+      </div>
+    </div>
+  </div>
+
+  <canvas id="confetti"></canvas>
+
+  <script src="data.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
